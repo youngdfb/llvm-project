@@ -1,8 +1,7 @@
-# RUN: llvm-mc %s -filetype obj -triple x86_64-apple-darwin -o - \
-# RUN: | llvm-dwarfdump -verify - \
-# RUN: | FileCheck %s
+# RUN: llvm-mc %s -filetype obj -triple x86_64-apple-darwin -o - | llvm-dwarfdump -verify --verify-json=%t.json -
+# RUN: FileCheck %s --input-file %t.json
 
-# CHECK-NOT: Verifying .apple_names...
+# CHECK: {"error-categories":{},"error-count":0}
 
 # This test is meant to verify that the -verify option
 # in llvm-dwarfdump doesn't produce any .apple_names related
